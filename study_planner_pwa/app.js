@@ -21,6 +21,11 @@ const statSubjects = document.getElementById('statSubjects');
 const statTasks    = document.getElementById('statTasks');
 const statDueSoon  = document.getElementById('statDueSoon');
 const statDonePct  = document.getElementById('statDonePct');
+const typeClass = {
+  'Homework': 'badge-homework',
+  'Assessment': 'badge-assessment',
+  'Study': 'badge-study'
+};
 
 function renderSubjects() {
   taskSubject.innerHTML = subjects.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
@@ -43,7 +48,7 @@ function renderTasks() {
       return `
       <li>
         <div>
-          <strong>${t.title}</strong> <span class="badge">${t.type}</span>
+          <strong>${t.title}</strong> <span class="badge badge-${t.type.toLowerCase().replace(/\s+/g,'-')}">${t.type}</span>
           <div class="meta">Subject: ${subject} • Due: ${due}</div>
         </div>
         <div>
